@@ -44,8 +44,12 @@ export const load: PageServerLoad<PageServerData> = async ({
         userGroups
       );
 
+    // Get user ID if available
+    const links = UserService.getLinksFromCookies(cookies);
+    const clientsAndLinks = [...links.data, ...processedClients];
+
     // Add any dashboard-specific data transformations here
-    const dashboardClients = processedClients.map((client) => ({
+    const dashboardClients = clientsAndLinks.map((client) => ({
       ...client,
       // Add any dashboard-specific properties here
       dashboardUrl: `/dashboard/apps/${client.client_id}`,

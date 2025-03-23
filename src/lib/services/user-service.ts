@@ -1,15 +1,51 @@
-import { env } from "$env/dynamic/private";
 import { env as publicEnv } from "$env/dynamic/public";
 import type { UserGroup } from "$lib/types";
 import { CacheService } from "./cache-service";
+import type { ClientResponse } from "$lib/types/portal.types";
 
 /**
  * Service for managing user-related operations
  */
+
 export class UserService {
   // Cache TTL for user groups (10 minutes)
   private static USER_GROUPS_TTL = 10 * 60 * 1000;
   private static PASSKEYS_TTL = 5 * 60 * 1000; // 5 minutes cache for passkeys
+
+  /**
+   * Get Service URls
+   */
+
+  static getLinksFromCookies(cookies: any): ClientResponse {
+    try {
+      const authUserCookie = cookies.get("auth_user");
+      if (authUserCookie) {
+        const authUser = JSON.parse(authUserCookie);
+
+        return {
+          data: Object.entries(authUser || {})
+            .filter(([key]) => key.startsWith("link_")) // Filter props that start with 'url_'
+            .map(([key, value]) => ({
+              id: `link${key.substring(4)}`,
+              client_id: `link${key.substring(4)}`,
+              name: key.substring(5),
+              description: "Remote Access",
+              hasLogo: true,
+              logoUrl: `${publicEnv.PUBLIC_OIDC_ISSUER}/api/application-configuration/logo?light=false`,
+              icon: null,
+              logoError: false,
+              accessGroups: ["Remote Access"],
+              restrictedAccess: true,
+              callback_urls: [`https://${value}`],
+            })),
+        };
+      }
+    } catch (e) {
+      console.warn("Failed to extract URLs from cookies:", e);
+    }
+
+    return { data: [] }; // Always return an empty array on error or if nothing is found
+  }
 
   /**
    * Get user ID from cookies

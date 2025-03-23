@@ -145,53 +145,6 @@
         {/if}
       </div>
     </div>
-
-    <!-- Access Controls -->
-    <div class="flex flex-col gap-2 mt-2">
-      <!-- Access Group -->
-      {#if client.accessGroups && client.accessGroups.length > 0}
-        <div class="flex items-center gap-2">
-          <span class="text-xs font-medium text-muted-foreground"
-            >Access Group:</span
-          >
-          <Badge
-            variant={client.restrictedAccess ? "destructive" : "secondary"}
-            class="text-xs px-2 py-1 flex items-center"
-          >
-            {client.accessGroups[0]}
-            {#if client.accessGroups.length > 1}
-              <span class="ml-1 opacity-75"
-                >+{client.accessGroups.length - 1}</span
-              >
-            {/if}
-          </Badge>
-        </div>
-      {/if}
-
-      <!-- Access Status -->
-      <div class="flex items-center gap-2">
-        <span class="text-xs font-medium text-muted-foreground"
-          >Access Value:</span
-        >
-        {#if client.restrictedAccess}
-          <Badge
-            variant="destructive"
-            class="text-xs px-2 py-1 flex items-center gap-1"
-          >
-            <Lock class="w-3 h-3" />
-            <span>Restricted</span>
-          </Badge>
-        {:else}
-          <Badge
-            variant="secondary"
-            class="text-xs px-2 py-1 flex items-center gap-1 text-green-500"
-          >
-            <LockOpen class="w-3 h-3" />
-            <span>Unrestricted</span>
-          </Badge>
-        {/if}
-      </div>
-    </div>
   </div>
 
   <!-- Launch Button -->

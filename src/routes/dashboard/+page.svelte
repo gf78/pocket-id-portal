@@ -135,7 +135,11 @@
       </div>
     </div>
   {:else}
+    
+
     <div class="flex flex-col md:flex-row gap-6">
+      
+        {#if false}
       <!-- Groups Panel -->
       <div class="w-full md:w-1/4">
         <div
@@ -185,9 +189,10 @@
           {/if}
         </div>
       </div>
+      {/if}
 
       <!-- Main Content - Applications Grid -->
-      <div class="w-full md:w-3/4 flex flex-col h-[calc(100vh-16rem)]">
+      <div class="w-full md:w-4/4 flex flex-col h-[calc(100vh-16rem)]">
         <!-- Adjust -16rem as needed based on header size -->
         <div
           class="rounded-xl border bg-card shadow-sm flex-grow flex flex-col overflow-hidden h-full animate-fade-in"
