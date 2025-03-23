@@ -74,15 +74,15 @@
       <div>
         <div class="flex items-center gap-3 mb-2">
           <div class="bg-primary/10 p-2 rounded-lg flex-shrink-0">
-            <img src={logoUrl} alt="Pocket ID Logo" class="h-6 w-auto" />
+            <img src={logoUrl} alt="fischers.cc Logo" class="h-6 w-auto" />
           </div>
-          <h1 class="text-xl font-bold">Pocket ID</h1>
+          <h1 class="text-xl font-bold">fischers.cc</h1>
         </div>
         <p class="text-xs text-muted-foreground ml-1">User Portal</p>
       </div>
     {:else}
       <div class="mx-auto bg-primary/10 p-2 rounded-lg">
-        <img src={logoUrl} alt="Pocket ID Logo" class="h-6 w-auto" />
+        <img src={logoUrl} alt="fischers.cc Logo" class="h-6 w-auto" />
       </div>
     {/if}
   </div>
@@ -114,11 +114,11 @@
           ? "bg-primary/10 text-primary font-medium"
           : "text-foreground hover:bg-muted/50"
       )}
-      aria-label="Dashboard"
+      aria-label="Applications"
     >
       <LayoutDashboard class="h-4 w-4" />
       {#if !isCollapsed}
-        <span>Dashboard</span>
+        <span>Applications</span>
       {/if}
     </a>
 

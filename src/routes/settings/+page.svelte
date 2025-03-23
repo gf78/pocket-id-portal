@@ -19,7 +19,7 @@
 
   // Landing page options
   const pageOptions = [
-    { value: "dashboard", label: "Dashboard", icon: Layout },
+    { value: "dashboard", label: "Applications", icon: Layout },
     { value: "settings", label: "Settings", icon: Settings2 },
     { value: "profile", label: "Profile", icon: Layout }, // Add profile as an option
   ] as const;
@@ -42,7 +42,7 @@
 </script>
 
 <svelte:head>
-  <title>Settings - Pocket ID Portal</title>
+  <title>Settings - fischers.cc Portal</title>
 </svelte:head>
 
 <div class="space-y-8 max-w-[1200px] mx-auto">
@@ -61,7 +61,7 @@
           <h1 class="text-3xl font-bold tracking-tight">Settings</h1>
         </div>
         <p class="text-muted-foreground max-w-lg">
-          Customize your Pocket ID Portal experience.
+          Customize your fischers.cc Portal experience.
         </p>
       </div>
     </div>
@@ -81,7 +81,7 @@
           <div>
             <Card.Title>Portal Preferences</Card.Title>
             <Card.Description class="text-xs mt-1">
-              Customize your experience in the Pocket ID Portal
+              Customize your experience in the fischers.cc Portal
             </Card.Description>
           </div>
         </div>

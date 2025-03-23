@@ -30,7 +30,7 @@
 </script>
 
 <svelte:head>
-  <title>My Profile - Pocket ID Portal</title>
+  <title>My Profile - fischers.cc Portal</title>
 </svelte:head>
 
 <div class="space-y-8 max-w-[1200px] mx-auto">
@@ -49,7 +49,7 @@
           <h1 class="text-3xl font-bold tracking-tight">My Profile</h1>
         </div>
         <p class="text-muted-foreground max-w-lg">
-          View and manage your Pocket ID profile information
+          View and manage your fischers.cc profile information
         </p>
       </div>
     </div>
@@ -69,7 +69,7 @@
           <div>
             <Card.Title>Profile Information</Card.Title>
             <Card.Description class="text-xs mt-1">
-              Your personal information from Pocket ID
+              Your personal information
             </Card.Description>
           </div>
         </div>
@@ -178,7 +178,7 @@
         >
           <Button variant="outline" class="gap-2">
             <User class="h-4 w-4" />
-            Manage Profile in Pocket ID
+            Manage Profile
           </Button>
         </a>
       </Card.Footer>
@@ -289,7 +289,7 @@
             <p class="text-sm text-destructive">Error: {dataError}</p>
             <p class="text-xs text-muted-foreground mt-2">
               Unable to load your passkeys. You can still manage them directly
-              in Pocket ID.
+              in id.fischers.cc
             </p>
           </div>
         {:else if passkeys.length === 0}
@@ -297,7 +297,7 @@
             <p class="text-sm">
               You don't have any passkeys registered. Passkeys provide a secure,
               passwordless way to authenticate. You can register your first
-              passkey in Pocket ID.
+              passkey in id.fischers.cc.
             </p>
           </div>
         {:else}
@@ -364,7 +364,7 @@
         >
           <Button variant="outline" class="gap-2">
             <Key class="h-4 w-4" />
-            Manage Passkeys in Pocket ID
+            Manage Passkeys
           </Button>
         </a>
       </Card.Footer>
