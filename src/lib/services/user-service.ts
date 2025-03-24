@@ -26,17 +26,17 @@ export class UserService {
           data: Object.entries(authUser || {})
             .filter(([key]) => key.startsWith("link_")) // Filter props that start with 'url_'
             .map(([key, value]) => ({
-              id: `link${key.substring(4)}`,
-              client_id: `link${key.substring(4)}`,
-              name: key.substring(5),
-              description: "Remote Access",
+              id: key,
+              client_id: key,
+              name: String(value).split("#")[1] || "-",
+              description: String(value).split("#")[2] || "Remote Access",
               hasLogo: true,
               logoUrl: `${publicEnv.PUBLIC_OIDC_ISSUER}/api/application-configuration/logo?light=false`,
               icon: null,
               logoError: false,
               accessGroups: ["Remote Access"],
               restrictedAccess: true,
-              callback_urls: [`https://${value}`],
+              callback_urls: [`LINK#https://${String(value).split("#")[0]}`],
             })),
         };
       }

@@ -33,7 +33,7 @@
   const isOnProfile = $derived(page.url.pathname.startsWith("/profile"));
 
   // Collapsible state
-  let isCollapsed = $state(false);
+  let isCollapsed = $state(true);
 
   // Save state to localStorage
   function toggleSidebar() {

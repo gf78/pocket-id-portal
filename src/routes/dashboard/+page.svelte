@@ -1,11 +1,10 @@
 <script lang="ts">
   import { auth } from "$lib/stores/auth.store";
   import ClientCard from "$lib/components/ClientCard.svelte";
-  import * as Pagination from "$lib/components/ui/pagination/index.js";
   import { Badge } from "$lib/components/ui/badge";
-  import type { Client, PageServerData, UserGroup } from "$lib/types";
+  import type { Client, PageServerData } from "$lib/types";
   import { onMount } from "svelte";
-  import { Users, Search, LayoutDashboard, Filter, Zap } from "@lucide/svelte";
+  import { Search, LayoutDashboard, Filter, Zap } from "@lucide/svelte";
 
   interface Props {
     data: PageServerData;
@@ -14,23 +13,8 @@
   let { data }: Props = $props();
 
   // All data now comes from server
-  let userGroups: UserGroup[] = data.userGroups || [];
   const accessibleClients: Client[] = data.clients?.data || [];
   const error = data.status === "error" ? data.error : null;
-
-  // Pagination state
-  let itemsPerPage = 6; // 3 rows of 3 cards in desktop view
-
-  // Calculate total items
-  let totalItems = $derived(accessibleClients.length);
-
-  // Get current page items based on pagination component's current page
-  function getPaginatedClients(currentPage: number) {
-    return accessibleClients.slice(
-      (currentPage - 1) * itemsPerPage,
-      currentPage * itemsPerPage
-    );
-  }
 
   // Default to 3 columns, but we'll update this based on screen size
   let gridColumns = $state(4);
@@ -139,7 +123,7 @@
 
     <div class="flex flex-col md:flex-row gap-6">
         <!-- Main Content - Applications Grid -->
-      <div class="w-full md:w-4/4 flex flex-col h-[calc(100vh-16rem)]">
+      <div class="w-full md:w-4/4 flex flex-col">
         <!-- Adjust -16rem as needed based on header size -->
         <div
           class="rounded-xl border bg-card shadow-sm flex-grow flex flex-col overflow-hidden h-full animate-fade-in"
@@ -198,9 +182,13 @@
                     <div
                       class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full h-full"
                     >
-                      {#each data.clients.data as client, i}
+                      {#each data.clients.data.filter((client) => searchTerm.trim() === "" || client.name
+                            .toLowerCase()
+                            .includes(searchTerm.toLowerCase()) || client.description
+                            ?.toLowerCase()
+                            .includes(searchTerm.toLowerCase())) as client, i}
                         <div
-                          class="min-h-[200px] animate-fade-in opacity-0"
+                          class="min-h-[150px] animate-fade-in opacity-0"
                           style="animation-delay: {200 + i * 75}ms"
                         >
                           <ClientCard

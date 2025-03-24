@@ -1,11 +1,8 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
-  import { env } from "$env/dynamic/public";
   import * as Card from "$lib/components/ui/card";
-  import { Badge } from "$lib/components/ui/badge";
   import { Button } from "$lib/components/ui/button";
   import { Separator } from "$lib/components/ui/separator";
-  import { ArrowRight, Lock, LockOpen } from "@lucide/svelte";
+  import { ArrowRight } from "@lucide/svelte";
 
   interface Props {
     client: {
@@ -61,6 +58,10 @@
     try {
       // Take the first callback URL
       const callbackUrl = callbackUrls[0];
+
+      if(callbackUrl.substring(0,5) === "LINK#") {
+        return callbackUrl.substring(5);
+      }
 
       // Parse the URL to extract just the origin (protocol + domain + port)
       const url = new URL(callbackUrl);
